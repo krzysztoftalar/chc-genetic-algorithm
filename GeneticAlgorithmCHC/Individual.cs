@@ -23,28 +23,28 @@ namespace GeneticAlgorithmCHC
                 SetGene(i, 0.5 < new Random().NextDouble() ? 1 : 0);
             }
         }
-        
+
         public void Flip(int j)
         {
-            bool g = _chromosome[j] == 1;
-            g = !g;
+            bool gene = _chromosome[j] == 1;
+            gene = !gene;
 
-            _chromosome[j] = Convert.ToInt32(g);
+            _chromosome[j] = Convert.ToInt32(gene);
         }
 
-        public int GetTarget(int offset)
+        public int GetTarget(int index)
         {
-            return Target[offset];
+            return Target[index];
         }
 
-        public void SetGene(int offset, int gene)
+        public void SetGene(int index, int gene)
         {
-            _chromosome[offset] = gene;
+            _chromosome[index] = gene;
         }
 
-        public int GetGene(int offset)
+        public int GetGene(int index)
         {
-            return _chromosome[offset];
+            return _chromosome[index];
         }
 
         public void SetFitness(double fitness)

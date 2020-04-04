@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace GeneticAlgorithmCHC
@@ -42,11 +41,11 @@ namespace GeneticAlgorithmCHC
             {
                 if (individual.GetGene(i) == individual.GetTarget(i))
                 {
-                    correctGenes += 1;
+                    correctGenes++;
                 }
             }
 
-            double fitness = (double) correctGenes / _chromosomeLength;
+            double fitness = (double)correctGenes / _chromosomeLength;
 
             individual.SetFitness(fitness);
 
@@ -81,16 +80,16 @@ namespace GeneticAlgorithmCHC
 
                 if (HammingDistance(parent1, parent2) > _threshold)
                 {
-                    var offSpring = CrossoverHUX(parent1, parent2);
+                    var (child1, child2) = CrossoverHUX(parent1, parent2);
 
-                    newPopulation.AddIndividual(offSpring.off1);
-                    newPopulation.AddIndividual(offSpring.off2);
+                    newPopulation.AddIndividual(child1);
+                    newPopulation.AddIndividual(child2);
 
-                    population.AddIndividual(offSpring.off1);
-                    population.AddIndividual(offSpring.off2);
+                    population.AddIndividual(child1);
+                    population.AddIndividual(child2);
 
-                    childrenPopulation.AddIndividual(offSpring.off1);
-                    childrenPopulation.AddIndividual(offSpring.off2);
+                    childrenPopulation.AddIndividual(child1);
+                    childrenPopulation.AddIndividual(child2);
                 }
             }
 
@@ -160,32 +159,30 @@ namespace GeneticAlgorithmCHC
             return hd;
         }
 
-        public (Individual off1, Individual off2) CrossoverHUX(Individual parent1, Individual parent2)
+        public (Individual child1, Individual child2) CrossoverHUX(Individual parent1, Individual parent2)
         {
             int del = HammingDistance(parent1, parent2) / 2;
 
             var child1 = new Individual(_chromosomeLength);
             var child2 = new Individual(_chromosomeLength);
 
-            int c1, c2;
-
             for (int i = 0; i < _chromosomeLength; i++)
             {
-                c1 = parent1.GetGene(i);
-                c2 = parent2.GetGene(i);
+                var child1Gene = parent1.GetGene(i);
+                var child2Gene = parent2.GetGene(i);
 
-                bool a = c1 == 1;
-                bool b = c2 == 1;
+                bool c1 = child1Gene == 1;
+                bool c2 = child2Gene == 1;
 
-                if (del > 0 && c1 != c2 && new Random().NextDouble() < 0.5)
+                if (del > 0 && child1Gene != child2Gene && new Random().NextDouble() < 0.5)
                 {
-                    a = !a;
-                    b = !b;
+                    c1 = !c1;
+                    c2 = !c2;
                     del--;
                 }
 
-                child1.SetGene(i, Convert.ToInt32(a));
-                child2.SetGene(i, Convert.ToInt32(b));
+                child1.SetGene(i, Convert.ToInt32(c1));
+                child2.SetGene(i, Convert.ToInt32(c2));
             }
 
             return (child1, child2);

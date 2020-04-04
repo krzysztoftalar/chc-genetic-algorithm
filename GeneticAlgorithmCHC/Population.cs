@@ -43,10 +43,10 @@ namespace GeneticAlgorithmCHC
         {
            return new Population()
            {
+               _populationFitness = population._populationFitness,
                _population = population._population
                    .OrderByDescending(x => x.GetFitness())
-                   .ToList(),
-               _populationFitness = population._populationFitness
+                   .ToList()
            };
         }
 
