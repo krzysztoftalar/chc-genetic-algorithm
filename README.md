@@ -12,9 +12,11 @@
 
 _The project was created for [Artificial Intelligence Methods](https://www.wbmii.ath.bielsko.pl) classes._
 
-A CHC is a non-traditional Genetic Algorithm which combines a conservative selection strategy (that always preserves the best individuals found so far) with a highly disruptive recombination (HUX) that produces offsprings that are maximally different from their two parents. The traditional though of preferring a recombination operator with a low disrupting properties may not hold when such a conservative selection strategy is used. On the contrary, certain highly disruptive crossover operator provide more effective search in many problems, which represents the core idea behind the
+A CHC is a non-traditional Genetic Algorithm which combines a conservative selection strategy (that always preserves the best individuals found so far) with a highly disruptive recombination (HUX) that produces offsprings that are maximally different from their two parents.
 
-CHC search method. This algorithm introduce a new bias against mating individuals who are too similar (incest prevention). Mutation is not performed, instead, a restart process re-introduces diversity whenever convergence is detected.
+The traditional though of preferring a recombination operator with a low disrupting properties may not hold when such a conservative selection strategy is used. On the contrary, certain highly disruptive crossover operator provide more effective search in many problems, which represents the core idea behind the CHC search method.
+
+This algorithm introduce a new bias against mating individuals who are too similar (incest prevention). Mutation is not performed, instead, a restart process re-introduces diversity whenever convergence is detected.
 
 ## License
 
